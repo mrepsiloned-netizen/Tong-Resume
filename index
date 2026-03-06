@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tong Zheng Qian — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f8fafc; --surface:#fff; --surface2:#f1f5f9;
+    --border:#e2e8f0; --border2:#cbd5e1;
+    --navy:#0f172a; --navy2:#1e293b;
+    --blue:#2563eb; --blue2:#3b82f6; --blue-light:#eff6ff; --blue-mid:#dbeafe;
+    --green:#059669; --green-light:#ecfdf5;
+    --amber:#d97706; --amber-light:#fffbeb;
+    --text:#0f172a; --muted:#64748b; --dim:#94a3b8;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+  /* HEADER */
+  header{background:var(--navy);padding:0 52px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:100;}
+  .logo{font-weight:800;font-size:16px;color:#fff;letter-spacing:-.3px;}
+  .logo span{color:var(--blue2);}
+  .contact-bar{display:flex;gap:24px;font-size:12px;color:rgba(255,255,255,.45);}
+  .contact-bar a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .15s;}
+  .contact-bar a:hover{color:var(--blue2);}
+
+  /* TABS */
+  .tabs{display:flex;background:var(--navy2);padding:0 52px;border-bottom:2px solid var(--blue);}
+  .tab-btn{background:none;border:none;color:rgba(255,255,255,.4);font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:13px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;}
+  .tab-btn:hover{color:rgba(255,255,255,.75);}
+  .tab-btn.active{color:#fff;border-bottom-color:var(--blue2);}
+  .tab-pane{display:none;}
+  .tab-pane.active{display:block;}
+
+  /* HERO */
+  .hero{background:var(--navy);padding:44px 52px 40px;position:relative;overflow:hidden;}
+  .hero::after{content:'BD LEAD';position:absolute;right:40px;bottom:-16px;font-weight:900;font-size:120px;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;white-space:nowrap;letter-spacing:-3px;}
+  .hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue2);margin-bottom:12px;}
+  .hero-name{font-weight:900;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#fff;margin-bottom:8px;letter-spacing:-2px;}
+  .hero-name span{color:var(--blue2);}
+  .hero-role{font-size:14px;font-weight:400;color:rgba(255,255,255,.5);}
+  .hero-role strong{color:rgba(255,255,255,.85);font-weight:600;}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .hero-tag{font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:3px 10px;}
+  .hero-loc{font-size:11px;color:rgba(255,255,255,.22);margin-top:12px;}
+
+  /* TEAM CONTEXT BANNER */
+  .team-context{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 52px;display:flex;align-items:center;gap:12px;}
+  .tc-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);white-space:nowrap;}
+  .tc-divider{width:1px;height:26px;background:var(--border2);flex-shrink:0;}
+  .tc-text{font-size:13px;color:var(--navy2);font-weight:500;line-height:1.5;}
+  .tc-text strong{color:var(--blue);font-weight:700;}
+
+  /* METRICS */
+  .metrics-wrapper{background:var(--surface);border-bottom:1px solid var(--border);}
+  .ms-header{display:flex;align-items:center;gap:10px;padding:14px 52px 0;}
+  .ms-tag{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;white-space:nowrap;}
+  .ms-tag.acq{background:var(--blue-mid);color:var(--blue);}
+  .ms-tag.inc{background:var(--green-light);color:var(--green);}
+  .ms-tag.bi{background:var(--amber-light);color:var(--amber);}
+  .ms-line{flex:1;height:1px;background:var(--border);}
+
+  .metrics-row{display:grid;padding:0 52px;}
+  .metrics-row.cols2{grid-template-columns:repeat(2,1fr);border-bottom:1px solid var(--border);}
+  .metrics-row.cols3{grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);}
+  .metrics-row.cols2b{grid-template-columns:repeat(2,1fr);}
+
+  .metric{padding:16px 0 20px;border-right:1px solid var(--border);padding-right:24px;padding-left:2px;margin-right:24px;}
+  .metric:last-child{border-right:none;margin-right:0;}
+  .metric-cat{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+  .metric-val{font-weight:800;font-size:28px;line-height:1;margin-bottom:3px;letter-spacing:-1px;}
+  .metric-val.acq{color:var(--blue);}
+  .metric-val.inc{color:var(--green);}
+  .metric-val.bi{color:var(--amber);}
+  .metric-label{font-size:12px;color:var(--muted);line-height:1.4;font-weight:500;}
+  .metric-sub{font-size:11px;color:var(--dim);margin-top:2px;}
+
+  /* LAYOUT */
+  .two-col{display:grid;grid-template-columns:1fr 292px;}
+  .main-col{padding:40px 52px;border-right:1px solid var(--border);}
+  .side-col{padding:40px 32px;}
+  .sec-label{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+  .sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* PILLS */
+  .side-block{margin-bottom:32px;}
+  .pill{display:inline-block;font-size:11px;font-weight:500;color:var(--navy2);background:var(--surface2);border:1px solid var(--border2);padding:4px 10px;margin:3px 3px 3px 0;border-radius:3px;transition:all .15s;}
+  .pill:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .edu-card{background:var(--blue-light);border-left:3px solid var(--blue);padding:14px 16px;}
+  .edu-degree{font-weight:600;font-size:13px;margin-bottom:3px;color:var(--navy);}
+  .edu-inst{font-size:11.5px;color:var(--muted);}
+
+  /* SIDE METRIC CARDS */
+  .mc{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 14px;margin-bottom:8px;}
+  .mc.green{border-left-color:var(--green);}
+  .mc.amber{border-left-color:var(--amber);}
+  .mc-val{font-weight:800;font-size:20px;color:var(--navy);line-height:1;margin-bottom:2px;letter-spacing:-.5px;}
+  .mc-label{font-size:11px;color:var(--muted);font-weight:500;}
+  .mc-sub{font-size:10px;color:var(--dim);margin-top:1px;}
+
+  /* EXPERIENCE */
+  .exp-co-block{margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--border);}
+  .exp-co-block:last-child{border-bottom:none;margin-bottom:0;}
+  .exp-co-name{font-weight:800;font-size:20px;color:var(--navy);letter-spacing:-.5px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+  .exp-co-name::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* Individual role within a company */
+  .exp-role{margin-bottom:24px;padding-bottom:24px;border-bottom:1px dashed var(--border);padding-left:16px;border-left:2px solid var(--blue-mid);}
+  .exp-role:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .exp-role-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;}
+  .exp-role-title{font-size:13px;font-weight:700;color:var(--navy2);letter-spacing:.1px;}
+  .exp-role-period{font-size:11px;color:var(--muted);white-space:nowrap;}
+  .exp-role-sub{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+  .exp-ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .exp-ul li{font-size:12.5px;color:#475569;line-height:1.65;padding-left:14px;position:relative;}
+  .exp-ul li::before{content:'›';position:absolute;left:0;color:var(--blue2);font-size:14px;top:0;font-weight:700;}
+  .exp-ul li strong{color:var(--text);font-weight:600;}
+
+  /* POD CARDS */
+  .pods-hdr{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:22px 0 10px;display:flex;align-items:center;gap:10px;}
+  .pods-hdr::after{content:'';flex:1;height:1px;background:var(--border);}
+  .pod-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .pod-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--navy2);padding:14px 16px;transition:border-top-color .15s,box-shadow .15s;}
+  .pod-card:hover{border-top-color:var(--blue);box-shadow:0 2px 12px rgba(37,99,235,.08);}
+  .pod-name{font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--navy);margin-bottom:2px;}
+  .pod-hc{font-size:10px;color:var(--dim);margin-bottom:8px;}
+  .pod-row{font-size:11.5px;color:#475569;line-height:1.55;margin-bottom:2px;display:flex;gap:5px;}
+  .pod-key{font-weight:700;color:var(--navy2);min-width:78px;flex-shrink:0;font-size:11px;}
+  .pod-row.perf .pod-key{color:var(--green);}
+
+  /* ═══════════ ORG CHART ═══════════ */
+  .org-page{padding:44px 52px;}
+  .org-title{font-weight:900;font-size:26px;color:var(--navy);letter-spacing:-1px;margin-bottom:4px;}
+  .org-subtitle{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:32px;}
+  .org-stats{display:flex;border:1px solid var(--border);background:var(--surface);max-width:580px;margin-bottom:40px;}
+  .os{flex:1;padding:16px 18px;border-right:1px solid var(--border);text-align:center;}
+  .os:last-child{border-right:none;}
+  .os-val{font-weight:800;font-size:28px;color:var(--navy);line-height:1;margin-bottom:3px;letter-spacing:-1px;}
+  .os-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+
+  /* Tree structure using flex + absolute connectors */
+  .tree{display:flex;flex-direction:column;align-items:center;}
+
+  /* Root node */
+  .root-card{background:var(--navy);border:2px solid var(--blue);border-top:4px solid var(--blue2);padding:18px 36px;text-align:center;min-width:320px;}
+  .rc-name{font-weight:800;font-size:17px;color:#fff;margin-bottom:3px;letter-spacing:-.3px;}
+  .rc-role{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px;}
+  .rc-badge{display:inline-block;font-size:10px;font-weight:700;background:var(--blue);color:#fff;padding:3px 12px;}
+
+  /* Vertical line down from root */
+  .v-conn{width:2px;background:var(--border2);}
+  .v-conn.h28{height:28px;}
+  .v-conn.h20{height:20px;}
+  .v-conn.h18{height:18px;}
+
+  /* Horizontal bar splitting into two branches */
+  .h-split{display:flex;width:100%;max-width:1000px;}
+  .h-split-left{flex:1;border-bottom:2px solid var(--border2);border-right:2px solid var(--border2);height:28px;}
+  .h-split-right{flex:1;border-bottom:2px solid var(--border2);border-left:2px solid var(--border2);height:28px;}
+
+  /* Two-branch layout */
+  .branches{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:1000px;gap:0;}
+
+  /* Each branch */
+  .branch{display:flex;flex-direction:column;align-items:center;}
+  .branch.left{border-right:1px solid var(--border);padding:0 20px 0 0;}
+  .branch.right{padding:0 0 0 20px;}
+
+  /* Branch header (coloured) */
+  .branch-header{width:100%;padding:11px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:13px;}
+  .branch-header.acq{background:var(--blue);color:#fff;}
+  .branch-header.inc{background:var(--navy2);color:#fff;}
+  .bh-badge{font-size:10px;font-weight:700;background:rgba(255,255,255,.18);padding:2px 8px;margin-left:8px;}
+  .bh-result{font-size:10px;font-weight:600;opacity:.85;}
+
+  /* Nodes below branch header */
+  .branch-nodes{display:flex;flex-direction:column;align-items:center;width:100%;}
+
+  /* Horizontal spread of leaf nodes */
+  .h-spread{display:flex;width:100%;position:relative;justify-content:center;}
+  .h-spread::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:var(--border2);}
+
+  .node-col{display:flex;flex-direction:column;align-items:center;}
+
+  /* Leaf card */
+  .leaf{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--border2);padding:10px 12px;min-width:120px;text-align:left;transition:border-top-color .15s;}
+  .leaf:hover{border-top-color:var(--blue);}
+  .leaf.green-top{border-top-color:var(--green);}
+  .leaf.wide{min-width:200px;}
+  .lf-name{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--navy);margin-bottom:1px;}
+  .lf-hc{font-size:9px;color:var(--dim);margin-bottom:5px;}
+  .lf-line{font-size:10.5px;color:#475569;line-height:1.45;margin-bottom:1px;}
+  .lf-line strong{color:var(--navy2);font-weight:600;}
+
+  /* Project lead cards (smaller) */
+  .proj-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--green);padding:8px 10px;min-width:96px;text-align:center;transition:border-top-color .15s,box-shadow .15s;}
+  .proj-card:hover{border-top-color:var(--navy2);box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .pc-name{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--navy);line-height:1.3;}
+  .proj-label-row{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin:6px 0 4px;width:100%;text-align:left;}
+
+  /* Legend */
+  .org-legend{display:flex;gap:24px;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);justify-content:center;flex-wrap:wrap;}
+  .leg{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);font-weight:500;}
+  .leg-dot{width:8px;height:8px;border-radius:50%;}
+
+  /* RESPONSIVE */
+  @media(max-width:880px){
+    header,.tabs{padding:0 20px;}
+    .hero{padding:32px 20px 28px;}
+    .team-context{padding:14px 20px;flex-wrap:wrap;}
+    .ms-header{padding:12px 20px 0;}
+    .metrics-row{padding:0 20px;}
+    .metrics-row.cols2,.metrics-row.cols3{grid-template-columns:1fr 1fr;}
+    .metrics-row.cols2b{grid-template-columns:1fr 1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .main-col{padding:28px 20px;border-right:none;}
+    .side-col{padding:20px;border-top:1px solid var(--border);}
+    .org-page{padding:28px 20px;}
+    .branches{grid-template-columns:1fr;}
+    .branch.left{border-right:none;padding:0;border-bottom:2px solid var(--border2);padding-bottom:24px;}
+    .branch.right{padding:0;}
+    .pod-grid{grid-template-columns:1fr;}
+    .contact-bar{display:none;}
+    .h-split,.h-split-left,.h-split-right{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Tong Zheng Qian <span>/ BD Lead</span></div>
+  <div class="contact-bar">
+    <a href="tel:0193502618">019-350 2618</a>
+    <a href="mailto:tom.tong.zq@gmail.com">tom.tong.zq@gmail.com</a>
+    <span>Bangsar South, KL</span>
+  </div>
+</header>
+
+<!-- TABS -->
+<nav class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="switchTab('experience',this)">Experience</button>
+  <button class="tab-btn" onclick="switchTab('orgchart',this)">Org Chart</button>
+</nav>
+
+<!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+<div id="tab-overview" class="tab-pane active">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Commercial Excellence &nbsp;·&nbsp; Revenue Operations</div>
+    <div class="hero-name">TONG <span>ZHENG QIAN</span></div>
+    <div class="hero-role"><strong>BD Lead</strong> — Vendor Acquisition &amp; Key Account Management &nbsp;·&nbsp; Lazada Malaysia</div>
+    <div class="hero-tags">
+      <span class="hero-tag">KPI Architecture</span>
+      <span class="hero-tag">Dashboard Automation</span>
+      <span class="hero-tag">Team Leadership · 23 HC</span>
+      <span class="hero-tag">Revenue Operations</span>
+    </div>
+    <div class="hero-loc">📍 Bangsar South, Kuala Lumpur &nbsp;·&nbsp; Lazada, August 2021 – Present</div>
+  </div>
+
+  <!-- TEAM CONTEXT BANNER -->
+  <div class="team-context">
+    <div class="tc-label">Team</div>
+    <div class="tc-divider"></div>
+    <div class="tc-text">
+      Managing Lazada BD Marketplace team with <strong>23 HC</strong> (<strong>14 Hunters</strong> &amp; <strong>9 KAMs</strong>) — acquiring targeted sellers onto the platform and growing key accounts through GMV, ads spend &amp; campaign participation.
+    </div>
+  </div>
+
+  <!-- METRICS: ACQUISITION -->
+  <div class="metrics-wrapper">
+    <div class="ms-header"><span class="ms-tag acq">Acquisition</span><div class="ms-line"></div></div>
+    <div class="metrics-row cols2">
+      <div class="metric">
+        <div class="metric-cat">YoY Growth</div>
+        <div class="metric-val acq">136%</div>
+        <div class="metric-label">Acquired Sellers</div>
+        <div class="metric-sub">452 → 616 units</div>
+      </div>
+      <div class="metric">
+        <div class="metric-cat">Productivity</div>
+        <div class="metric-val acq">13.1</div>
+        <div class="metric-label">Acquired Sellers per HC</div>
+        <div class="metric-sub">Up from 8.7 &nbsp;(+51%)</div>
+      </div>
+    </div>
+
+    <!-- METRICS: INCUBATION -->
+    <div class="ms-header" style="margin-top:6px;"><span class="ms-tag inc">Incubation</span><div class="ms-line"></div></div>
+    <div class="metrics-row cols3">
+      <div class="metric">
+        <div class="metric-cat">KAM GMV</div>
+        <div class="metric-val inc">116%</div>
+        <div class="metric-label">GMV Completion</div>
+        <div class="metric-sub">Cumulative across KAM pod</div>
+      </div>
+      <div class="metric">
+        <div class="metric-cat">MS Spend</div>
+        <div class="metric-val inc">105%</div>
+        <div class="metric-label">MS Spend Completion</div>
+        <div class="metric-sub">Optimised seller ad spend</div>
+      </div>
+      <div class="metric">
+        <div class="metric-cat">Campaign Participation</div>
+        <div class="metric-val inc">100%</div>
+        <div class="metric-label">Revenue Coverage Target</div>
+        <div class="metric-sub">vs 64% achieve frequency</div>
+      </div>
+    </div>
+
+    <!-- METRICS: BI -->
+    <div class="ms-header" style="margin-top:6px;"><span class="ms-tag bi">BI &amp; Automation</span><div class="ms-line"></div></div>
+    <div class="metrics-row cols2b">
+      <div class="metric">
+        <div class="metric-cat">Workflow Automation</div>
+        <div class="metric-val bi">~40%</div>
+        <div class="metric-label">Leads Team Time Saved</div>
+        <div class="metric-sub">Eliminated manual reporting across BD</div>
+      </div>
+      <div class="metric">
+        <div class="metric-cat">BD Dashboard</div>
+        <div class="metric-val bi" style="font-size:22px;letter-spacing:-.3px;">Built</div>
+        <div class="metric-label">Acquisition to Incubation</div>
+        <div class="metric-sub">Inputs to outputs (calls, visits → GMV, MS)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW LOWER: education + sidebar -->
+  <div class="two-col">
+    <div class="main-col">
+      <div class="sec-label">Education</div>
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Science (Economics)</div>
+        <div class="edu-inst">Universiti Utara Malaysia (UUM) &nbsp;·&nbsp; 2017 – 2021</div>
+      </div>
+    </div>
+    <div class="side-col">
+      <div class="sec-label">Languages</div>
+      <div class="side-block">
+        <span class="pill">English</span>
+        <span class="pill">Malay</span>
+        <span class="pill">Mandarin</span>
+      </div>
+      <div class="sec-label">Technical Skills</div>
+      <div class="side-block">
+        <span class="pill">SQL Dashboarding</span>
+        <span class="pill">Reporting Automation</span>
+        <span class="pill">KPI Architecture</span>
+        <span class="pill">Workflow Automation</span>
+        <span class="pill">CRM (Salesforce)</span>
+        <span class="pill">Lead Pipeline Mgmt</span>
+        <span class="pill">Revenue Forecasting</span>
+        <span class="pill">Performance Alerts</span>
+      </div>
+      <div class="sec-label">Contact</div>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:#475569;font-weight:500;">
+        <div>📞 <a href="tel:0193502618" style="color:#475569;text-decoration:none;">019-350 2618</a></div>
+        <div>✉️ <a href="mailto:tom.tong.zq@gmail.com" style="color:#475569;text-decoration:none;">tom.tong.zq@gmail.com</a></div>
+        <div>📍 Bangsar South, KL</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ EXPERIENCE ═══════════════════ -->
+<div id="tab-experience" class="tab-pane">
+  <div class="two-col">
+    <div class="main-col">
+
+      <!-- LAZADA (all roles) -->
+      <div class="exp-co-block">
+        <div class="exp-co-name">Lazada</div>
+
+        <!-- ROLE 1: BD Lead (current) -->
+        <div class="exp-role">
+          <div class="exp-role-hdr">
+            <div class="exp-role-title">BD Lead — Vendor Acquisition &amp; Key Account Management</div>
+            <div class="exp-role-period">Oct 2024 – Present</div>
+          </div>
+          <div class="exp-role-sub">Commercial Excellence &amp; Revenue Operations</div>
+          <ul class="exp-ul">
+            <li>Directly leading a <strong>23-HC team</strong> (14 Hunters + 9 KAMs) with no intermediary layers, owning ~50% of the department's total sales.</li>
+            <li>Self-initiated <strong>revenue operations &amp; commercial excellence</strong> within BD — built automated full-stack SQL dashboards eliminating manual reporting and saving ~40% of leads team time.</li>
+            <li>Architected <strong>KPI splitting logic and automated performance alerts</strong> for real-time governance across 6 sub-pods.</li>
+            <li>Designed a <strong>BD dashboard covering acquisition to incubation</strong> — tracking inputs (calls, visits, social contacts) through to outputs (GMV, MS spend).</li>
+            <li>Led the strategic shift from field visits to <strong>social chat outreach</strong>, achieving 100% campaign revenue coverage target.</li>
+          </ul>
+          <div class="pods-hdr">Team Sub-Pod Structure</div>
+          <div class="pod-grid">
+            <div class="pod-card">
+              <div class="pod-name">Lead Gen</div><div class="pod-hc">2 HC</div>
+              <div class="pod-row"><span class="pod-key">Target:</span><span>100 lead sources per day</span></div>
+              <div class="pod-row"><span class="pod-key">Scope:</span><span>Identify contact info for high-potential seller targets</span></div>
+              <div class="pod-row perf"><span class="pod-key">Performance:</span><span>Feeds verified leads into Call Agent pipeline</span></div>
+            </div>
+            <div class="pod-card">
+              <div class="pod-name">Call Agent</div><div class="pod-hc">1 HC</div>
+              <div class="pod-row"><span class="pod-key">Target:</span><span>100 outbound calls per day</span></div>
+              <div class="pod-row"><span class="pod-key">Scope:</span><span>Verify lead authenticity and gauge seller interest</span></div>
+              <div class="pod-row perf"><span class="pod-key">Performance:</span><span>Filters qualified leads to reduce wasted Hunter effort</span></div>
+            </div>
+            <div class="pod-card">
+              <div class="pod-name">Field Agents</div><div class="pod-hc">3 HC</div>
+              <div class="pod-row"><span class="pod-key">Target:</span><span>16 physical visits per day</span></div>
+              <div class="pod-row"><span class="pod-key">Scope:</span><span>On-ground lead sourcing and seller qualification</span></div>
+              <div class="pod-row perf"><span class="pod-key">Performance:</span><span>High-conviction sourcing layer for warm leads</span></div>
+            </div>
+            <div class="pod-card">
+              <div class="pod-name">Social Chat</div><div class="pod-hc">2 HC</div>
+              <div class="pod-row"><span class="pod-key">Target:</span><span>100 contacts per day via social platforms</span></div>
+              <div class="pod-row"><span class="pod-key">Scope:</span><span>Reach and qualify sellers through social media outreach</span></div>
+              <div class="pod-row perf"><span class="pod-key">Performance:</span><span>Primary top-of-funnel channel replacing field visits</span></div>
+            </div>
+            <div class="pod-card">
+              <div class="pod-name">Hunters</div><div class="pod-hc">5 HC</div>
+              <div class="pod-row"><span class="pod-key">Target:</span><span>10–18 seller wins per month per HC</span></div>
+              <div class="pod-row"><span class="pod-key">Scope:</span><span>Acquire targeted sellers into the Lazada ecosystem</span></div>
+              <div class="pod-row perf"><span class="pod-key">Performance:</span><span>Productivity up <strong>8.7 → 13.1</strong> acquired sellers / HC</span></div>
+            </div>
+            <div class="pod-card">
+              <div class="pod-name">KAMs</div><div class="pod-hc">9 HC</div>
+              <div class="pod-row"><span class="pod-key">Target:</span><span>220 active sellers managed per HC per month</span></div>
+              <div class="pod-row"><span class="pod-key">Scope:</span><span>Drive GMV growth, MS spend and campaign participation</span></div>
+              <div class="pod-row perf"><span class="pod-key">Performance:</span><span><strong>116% GMV</strong> · <strong>105% MS Spend</strong> · <strong>100%</strong> Campaign Coverage</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROLE 2: BD KA Growth Lead -->
+        <div class="exp-role">
+          <div class="exp-role-hdr">
+            <div class="exp-role-title">BD Key Account Growth Lead</div>
+            <div class="exp-role-period">Jan 2024 – Oct 2024</div>
+          </div>
+          <div class="exp-role-sub">Incubation Leadership</div>
+          <ul class="exp-ul">
+            <li>Led the incubation arm across clusters, managing <strong>~700 sellers</strong> and translating campaigns and growth levers into measurable account-level revenue impact.</li>
+          </ul>
+        </div>
+
+        <!-- ROLE 3: Fashion Lead -->
+        <div class="exp-role">
+          <div class="exp-role-hdr">
+            <div class="exp-role-title">Fashion Lead</div>
+            <div class="exp-role-period">May 2023 – Jan 2024</div>
+          </div>
+          <div class="exp-role-sub">Category Incubation</div>
+          <ul class="exp-ul">
+            <li>Led category-level incubation initiatives, managing <strong>~200 sellers</strong>, campaigns and growth levers to drive early-stage activation and performance.</li>
+          </ul>
+        </div>
+
+        <!-- ROLE 4: Fashion KAM (IC) -->
+        <div class="exp-role">
+          <div class="exp-role-hdr">
+            <div class="exp-role-title">Fashion Key Account Manager</div>
+            <div class="exp-role-period">Aug 2021 – May 2023</div>
+          </div>
+          <div class="exp-role-sub">Individual Contributor</div>
+          <ul class="exp-ul">
+            <li>Managed and grew a portfolio of <strong>~70 key accounts</strong>, including New Balance, Red's Revenge, and Thousand Miles, building a strong foundation in account ownership, seller performance and commercial execution.</li>
+          </ul>
+        </div>
+
+      </div><!-- /Lazada block -->
+
+      <!-- MR MUSTACHE -->
+      <div class="exp-co-block">
+        <div class="exp-co-name">Mr. Mustache</div>
+        <div class="exp-role">
+          <div class="exp-role-hdr">
+            <div class="exp-role-title">F&amp;B Co-Founder</div>
+            <div class="exp-role-period">2017 – 2020</div>
+          </div>
+          <ul class="exp-ul">
+            <li>Co-founded and operated an F&amp;B venture with <strong>5 partners</strong>; owned sales, operations and day-to-day execution.</li>
+            <li>Drove consistent revenue growth through <strong>WhatsApp community engagement</strong> and customer retention strategies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PWC -->
+      <div class="exp-co-block">
+        <div class="exp-co-name">PwC</div>
+        <div class="exp-role">
+          <div class="exp-role-hdr">
+            <div class="exp-role-title">Audit Intern</div>
+            <div class="exp-role-period">Mar – Jul 2021</div>
+          </div>
+          <ul class="exp-ul">
+            <li>Supported <strong>audit engagements and financial reviews</strong> for various industrial clients.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /main-col -->
+
+    <div class="side-col">
+      <div class="sec-label">Key Metrics</div>
+
+      <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Acquisition</div>
+      <div class="mc">
+        <div class="mc-val">452 → 616</div>
+        <div class="mc-label">Acquired sellers — YoY</div>
+        <div class="mc-sub">+136% growth</div>
+      </div>
+      <div class="mc">
+        <div class="mc-val">8.7 → 13.1</div>
+        <div class="mc-label">Acquired sellers per HC — YoY</div>
+        <div class="mc-sub">+51% productivity gain</div>
+      </div>
+
+      <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-top:20px;margin-bottom:8px;">Incubation</div>
+      <div class="mc green">
+        <div class="mc-val">116%</div>
+        <div class="mc-label">KAM GMV completion</div>
+      </div>
+      <div class="mc green">
+        <div class="mc-val">105%</div>
+        <div class="mc-label">MS Spend completion</div>
+      </div>
+      <div class="mc green">
+        <div class="mc-val">100%</div>
+        <div class="mc-label">Campaign participation coverage</div>
+        <div class="mc-sub">vs 64% achieve frequency</div>
+      </div>
+
+      <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-top:20px;margin-bottom:8px;">BI &amp; Automation</div>
+      <div class="mc amber">
+        <div class="mc-val">~40%</div>
+        <div class="mc-label">Leads team time saved</div>
+        <div class="mc-sub">Via reporting automation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ ORG CHART ═══════════════════ -->
+<div id="tab-orgchart" class="tab-pane">
+  <div class="org-page">
+    <div class="org-title">Team Structure</div>
+    <p class="org-subtitle">23 direct reports · 6 sub-pods · Lazada BD Division</p>
+
+    <div class="org-stats">
+      <div class="os"><div class="os-val">23</div><div class="os-label">Total HC</div></div>
+      <div class="os"><div class="os-val">14</div><div class="os-label">Hunters</div></div>
+      <div class="os"><div class="os-val">9</div><div class="os-label">KAMs</div></div>
+      <div class="os"><div class="os-val">6</div><div class="os-label">Sub-Pods</div></div>
+    </div>
+
+    <div class="tree">
+
+      <!-- ROOT -->
+      <div class="root-card">
+        <div class="rc-name">Tong Zheng Qian</div>
+        <div class="rc-role">BD Lead · Vendor Acquisition &amp; Key Account Management</div>
+        <span class="rc-badge">~50% Dept. Sales &nbsp;·&nbsp; Commercial Excellence &amp; Revenue Ops</span>
+      </div>
+
+      <!-- Connector: root → split -->
+      <div class="v-conn h28"></div>
+      <div class="h-split">
+        <div class="h-split-left"></div>
+        <div class="h-split-right"></div>
+      </div>
+
+      <!-- TWO BRANCHES -->
+      <div class="branches">
+
+        <!-- ════ LEFT: ACQUISITION ════ -->
+        <div class="branch left">
+          <!-- connector down to header -->
+          <div class="v-conn h20"></div>
+
+          <!-- Branch header -->
+          <div class="branch-header acq" style="width:100%;">
+            <span>Acquisition <span class="bh-badge">14 HC</span></span>
+            <span class="bh-result">136% YoY · 13.1 sellers/HC</span>
+          </div>
+
+          <!-- Connector to spread -->
+          <div class="branch-nodes">
+            <div class="v-conn h20"></div>
+            <!-- Horizontal spread of 5 leaf nodes -->
+            <div class="h-spread" style="gap:6px;flex-wrap:wrap;">
+              <div class="node-col">
+                <div class="v-conn h18"></div>
+                <div class="leaf">
+                  <div class="lf-name">Lead Gen</div><div class="lf-hc">2 HC</div>
+                  <div class="lf-line"><strong>Target:</strong> 100 leads/day</div>
+                  <div class="lf-line"><strong>Scope:</strong> Contact sourcing</div>
+                </div>
+              </div>
+              <div class="node-col">
+                <div class="v-conn h18"></div>
+                <div class="leaf">
+                  <div class="lf-name">Call Agent</div><div class="lf-hc">1 HC</div>
+                  <div class="lf-line"><strong>Target:</strong> 100 calls/day</div>
+                  <div class="lf-line"><strong>Scope:</strong> Lead verification</div>
+                </div>
+              </div>
+              <div class="node-col">
+                <div class="v-conn h18"></div>
+                <div class="leaf">
+                  <div class="lf-name">Field Agents</div><div class="lf-hc">3 HC</div>
+                  <div class="lf-line"><strong>Target:</strong> 16 visits/day</div>
+                  <div class="lf-line"><strong>Scope:</strong> On-ground sourcing</div>
+                </div>
+              </div>
+              <div class="node-col">
+                <div class="v-conn h18"></div>
+                <div class="leaf">
+                  <div class="lf-name">Social Chat</div><div class="lf-hc">2 HC</div>
+                  <div class="lf-line"><strong>Target:</strong> 100 contacts/day</div>
+                  <div class="lf-line"><strong>Scope:</strong> Social outreach</div>
+                </div>
+              </div>
+              <div class="node-col">
+                <div class="v-conn h18"></div>
+                <div class="leaf">
+                  <div class="lf-name">Hunters</div><div class="lf-hc">5 HC</div>
+                  <div class="lf-line"><strong>Target:</strong> 10–18 wins/mo</div>
+                  <div class="lf-line"><strong>Scope:</strong> Acquire targeted sellers</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ════ RIGHT: INCUBATION ════ -->
+        <div class="branch right">
+          <div class="v-conn h20"></div>
+
+          <div class="branch-header inc" style="width:100%;">
+            <span>Incubation <span class="bh-badge">9 HC</span></span>
+            <span class="bh-result">116% GMV · 100% Campaign Cov.</span>
+          </div>
+
+          <div class="branch-nodes">
+            <div class="v-conn h20"></div>
+
+            <!-- KAMs node -->
+            <div class="node-col" style="width:90%;">
+              <div class="v-conn h18"></div>
+              <div class="leaf green-top wide" style="width:100%;">
+                <div class="lf-name">Key Account Managers</div><div class="lf-hc">9 HC &nbsp;·&nbsp; 220 sellers / HC / month</div>
+                <div class="lf-line"><strong>GMV:</strong> 116% completion</div>
+                <div class="lf-line"><strong>MS Spend:</strong> 105% completion</div>
+                <div class="lf-line"><strong>Campaign Rev:</strong> 100% coverage</div>
+              </div>
+            </div>
+
+            <!-- Connector KAMs → Project Leads -->
+            <div style="width:90%;display:flex;flex-direction:column;align-items:center;">
+              <div class="v-conn h18"></div>
+              <div style="width:100%;border-bottom:2px solid var(--border2);"></div>
+              <div class="proj-label-row">Project Leads</div>
+            </div>
+
+            <!-- Project leads spread -->
+            <div class="h-spread" style="gap:6px;flex-wrap:wrap;width:100%;">
+              <div class="node-col"><div class="v-conn h18"></div><div class="proj-card"><div class="pc-name">PMO Lead</div></div></div>
+              <div class="node-col"><div class="v-conn h18"></div><div class="proj-card"><div class="pc-name">MS Lead</div></div></div>
+              <div class="node-col"><div class="v-conn h18"></div><div class="proj-card"><div class="pc-name">Campaign Lead</div></div></div>
+              <div class="node-col"><div class="v-conn h18"></div><div class="proj-card"><div class="pc-name">GMV Lead</div></div></div>
+              <div class="node-col"><div class="v-conn h18"></div><div class="proj-card"><div class="pc-name">Assortment Lead</div></div></div>
+              <div class="node-col"><div class="v-conn h18"></div><div class="proj-card"><div class="pc-name">Seller Package Lead</div></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /branches -->
+
+      <div class="org-legend">
+        <div class="leg"><div class="leg-dot" style="background:var(--navy);"></div>BD Lead</div>
+        <div class="leg"><div class="leg-dot" style="background:var(--blue);"></div>Acquisition — 14 HC</div>
+        <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Incubation — 9 HC · KAMs + Project Leads</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(name,btn){
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
