@@ -19,7 +19,7 @@
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
   /* HEADER */
-  header{background:var(--navy);padding:0 52px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:100;}
+  header{background:var(--navy);height:58px;position:sticky;top:0;z-index:100;}
   .logo{font-weight:800;font-size:16px;color:#fff;letter-spacing:-.3px;}
   .logo span{color:var(--blue2);}
   .contact-bar{display:flex;gap:24px;font-size:12px;color:rgba(255,255,255,.45);}
@@ -27,7 +27,8 @@
   .contact-bar a:hover{color:var(--blue2);}
 
   /* TABS */
-  .tabs{display:flex;background:var(--navy2);padding:0 52px;border-bottom:2px solid var(--blue);}
+  .tabs{display:flex;background:var(--navy2);border-bottom:2px solid var(--blue);}
+  .tabs-inner{max-width:1200px;margin:0 auto;padding:0 52px;display:flex;width:100%;}
   .tab-btn{background:none;border:none;color:rgba(255,255,255,.4);font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:13px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;}
   .tab-btn:hover{color:rgba(255,255,255,.75);}
   .tab-btn.active{color:#fff;border-bottom-color:var(--blue2);}
@@ -35,8 +36,9 @@
   .tab-pane.active{display:block;}
 
   /* HERO */
-  .hero{background:var(--navy);padding:44px 52px 40px;position:relative;overflow:hidden;}
+  .hero{background:var(--navy);position:relative;overflow:hidden;}
   .hero::after{content:'BD LEAD';position:absolute;right:40px;bottom:-16px;font-weight:900;font-size:120px;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;white-space:nowrap;letter-spacing:-3px;}
+  .hero-inner{padding:44px 52px 40px;position:relative;z-index:1;}
   .hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue2);margin-bottom:12px;}
   .hero-name{font-weight:900;font-size:clamp(38px,5.5vw,68px);line-height:1;color:#fff;margin-bottom:8px;letter-spacing:-2px;}
   .hero-name span{color:var(--blue2);}
@@ -47,7 +49,8 @@
   .hero-loc{font-size:11px;color:rgba(255,255,255,.22);margin-top:12px;}
 
   /* TEAM CONTEXT BANNER */
-  .team-context{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 52px;display:flex;align-items:center;gap:12px;}
+  .team-context{background:var(--surface);border-bottom:1px solid var(--border);}
+  .tc-inner{max-width:1200px;margin:0 auto;padding:16px 52px;display:flex;align-items:center;gap:12px;width:100%;}
   .tc-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);white-space:nowrap;}
   .tc-divider{width:1px;height:26px;background:var(--border2);flex-shrink:0;}
   .tc-text{font-size:13px;color:var(--navy2);font-weight:500;line-height:1.5;}
@@ -62,10 +65,9 @@
   .ms-tag.bi{background:var(--amber-light);color:var(--amber);}
   .ms-line{flex:1;height:1px;background:var(--border);}
 
-  .metrics-row{display:grid;padding:0 52px;}
-  .metrics-row.cols2{grid-template-columns:repeat(2,1fr);border-bottom:1px solid var(--border);}
-  .metrics-row.cols3{grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);}
-  .metrics-row.cols2b{grid-template-columns:repeat(2,1fr);}
+  .metrics-row.cols2{grid-template-columns:repeat(2,minmax(0,260px));border-bottom:1px solid var(--border);}
+  .metrics-row.cols3{grid-template-columns:repeat(3,minmax(0,260px));border-bottom:1px solid var(--border);}
+  .metrics-row.cols2b{grid-template-columns:repeat(2,minmax(0,260px));}
 
   .metric{padding:16px 0 20px;border-right:1px solid var(--border);padding-right:24px;padding-left:2px;margin-right:24px;}
   .metric:last-child{border-right:none;margin-right:0;}
@@ -77,8 +79,6 @@
   .metric-label{font-size:12px;color:var(--muted);line-height:1.4;font-weight:500;}
   .metric-sub{font-size:11px;color:var(--dim);margin-top:2px;}
 
-  /* LAYOUT */
-  .two-col{display:grid;grid-template-columns:1fr 292px;}
   .main-col{padding:40px 52px;border-right:1px solid var(--border);}
   .side-col{padding:40px 32px;}
   .sec-label{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
@@ -131,7 +131,6 @@
   .pod-row.perf .pod-key{color:var(--green);}
 
   /* ═══════════ ORG CHART ═══════════ */
-  .org-page{padding:44px 52px;}
   .org-title{font-weight:900;font-size:26px;color:var(--navy);letter-spacing:-1px;margin-bottom:4px;}
   .org-subtitle{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:32px;}
   .org-stats{display:flex;border:1px solid var(--border);background:var(--surface);max-width:580px;margin-bottom:40px;}
@@ -156,46 +155,46 @@
   .v-conn.h18{height:18px;}
 
   /* Horizontal bar splitting into two branches */
-  .h-split{display:flex;width:100%;max-width:1000px;}
+  .h-split{display:flex;width:100%;max-width:860px;}
   .h-split-left{flex:1;border-bottom:2px solid var(--border2);border-right:2px solid var(--border2);height:28px;}
   .h-split-right{flex:1;border-bottom:2px solid var(--border2);border-left:2px solid var(--border2);height:28px;}
 
-  /* Two-branch layout */
-  .branches{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:1000px;gap:0;}
+  /* Two-branch layout — capped tighter so nodes don't balloon */
+  .branches{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:860px;gap:0;}
 
   /* Each branch */
   .branch{display:flex;flex-direction:column;align-items:center;}
-  .branch.left{border-right:1px solid var(--border);padding:0 20px 0 0;}
-  .branch.right{padding:0 0 0 20px;}
+  .branch.left{border-right:1px solid var(--border);padding:0 16px 0 0;}
+  .branch.right{padding:0 0 0 16px;}
 
   /* Branch header (coloured) */
-  .branch-header{width:100%;padding:11px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:13px;}
+  .branch-header{width:100%;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:12px;}
   .branch-header.acq{background:var(--blue);color:#fff;}
   .branch-header.inc{background:var(--navy2);color:#fff;}
-  .bh-badge{font-size:10px;font-weight:700;background:rgba(255,255,255,.18);padding:2px 8px;margin-left:8px;}
-  .bh-result{font-size:10px;font-weight:600;opacity:.85;}
+  .bh-badge{font-size:9px;font-weight:700;background:rgba(255,255,255,.18);padding:2px 7px;margin-left:6px;}
+  .bh-result{font-size:9px;font-weight:600;opacity:.85;}
 
   /* Nodes below branch header */
   .branch-nodes{display:flex;flex-direction:column;align-items:center;width:100%;}
 
-  /* Horizontal spread of leaf nodes */
-  .h-spread{display:flex;width:100%;position:relative;justify-content:center;}
-  .h-spread::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:var(--border2);}
+  /* Horizontal spread of leaf nodes — fixed width per card, centered */
+  .h-spread{display:flex;width:100%;position:relative;justify-content:center;gap:6px;flex-wrap:wrap;padding-top:0;}
+  .h-spread::before{content:'';position:absolute;top:0;left:8%;right:8%;height:2px;background:var(--border2);}
 
   .node-col{display:flex;flex-direction:column;align-items:center;}
 
-  /* Leaf card */
-  .leaf{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--border2);padding:10px 12px;min-width:120px;text-align:left;transition:border-top-color .15s;}
+  /* Leaf card — fixed width, never stretches */
+  .leaf{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--border2);padding:10px 12px;width:128px;flex-shrink:0;text-align:left;transition:border-top-color .15s;}
   .leaf:hover{border-top-color:var(--blue);}
   .leaf.green-top{border-top-color:var(--green);}
-  .leaf.wide{min-width:200px;}
-  .lf-name{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--navy);margin-bottom:1px;}
+  .leaf.wide{width:200px;}
+  .lf-name{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--navy);margin-bottom:1px;}
   .lf-hc{font-size:9px;color:var(--dim);margin-bottom:5px;}
-  .lf-line{font-size:10.5px;color:#475569;line-height:1.45;margin-bottom:1px;}
+  .lf-line{font-size:10px;color:#475569;line-height:1.45;margin-bottom:1px;}
   .lf-line strong{color:var(--navy2);font-weight:600;}
 
-  /* Project lead cards (smaller) */
-  .proj-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--green);padding:8px 10px;min-width:96px;text-align:center;transition:border-top-color .15s,box-shadow .15s;}
+  /* Project lead cards — fixed width */
+  .proj-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--green);padding:8px 10px;width:100px;flex-shrink:0;text-align:center;transition:border-top-color .15s,box-shadow .15s;}
   .proj-card:hover{border-top-color:var(--navy2);box-shadow:0 2px 8px rgba(0,0,0,.06);}
   .pc-name{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:var(--navy);line-height:1.3;}
   .proj-label-row{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin:6px 0 4px;width:100%;text-align:left;}
@@ -205,11 +204,20 @@
   .leg{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);font-weight:500;}
   .leg-dot{width:8px;height:8px;border-radius:50%;}
 
-  /* RESPONSIVE */
+  /* ── MAX WIDTH WRAPPER ── */
+  header > .hdr-inner{max-width:1200px;margin:0 auto;padding:0 52px;display:flex;align-items:center;justify-content:space-between;height:100%;width:100%;}
+  .tabs > .tabs-inner{max-width:1200px;margin:0 auto;padding:0 52px;display:flex;width:100%;}
+  .ms-header{max-width:1200px;margin:0 auto;padding:14px 52px 0;}
+  .metrics-row{display:grid;max-width:1200px;margin:0 auto;padding:0 52px;}
+  .two-col{display:grid;grid-template-columns:1fr 292px;max-width:1200px;margin:0 auto;}
+  .org-page{max-width:1200px;margin:0 auto;padding:44px 52px;}
+
   @media(max-width:880px){
-    header,.tabs{padding:0 20px;}
-    .hero{padding:32px 20px 28px;}
-    .team-context{padding:14px 20px;flex-wrap:wrap;}
+    header > .hdr-inner{padding:0 20px;}
+    .tabs > .tabs-inner{padding:0 20px;}
+    .hero{padding:0;}
+    .hero-inner{padding:32px 20px 28px;}
+    .team-context > .tc-inner{padding:0 20px;flex-wrap:wrap;}
     .ms-header{padding:12px 20px 0;}
     .metrics-row{padding:0 20px;}
     .metrics-row.cols2,.metrics-row.cols3{grid-template-columns:1fr 1fr;}
@@ -225,31 +233,42 @@
     .contact-bar{display:none;}
     .h-split,.h-split-left,.h-split-right{max-width:100%;}
   }
+
+  @media(max-width:560px){
+    .metrics-row.cols2,.metrics-row.cols3,.metrics-row.cols2b{grid-template-columns:1fr;}
+    .hero-name{letter-spacing:-1px;}
+    .branch-header{flex-direction:column;align-items:flex-start;gap:4px;}
+  }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header>
-  <div class="logo">Tong Zheng Qian <span>/ BD Lead</span></div>
-  <div class="contact-bar">
-    <a href="tel:0193502618">019-350 2618</a>
-    <a href="mailto:tom.tong.zq@gmail.com">tom.tong.zq@gmail.com</a>
-    <span>Bangsar South, KL</span>
+  <div class="hdr-inner">
+    <div class="logo">Tong Zheng Qian <span>/ BD Lead</span></div>
+    <div class="contact-bar">
+      <a href="tel:0193502618">019-350 2618</a>
+      <a href="/cdn-cgi/l/email-protection#fe8a9193d08a919099d0848fbe99939f9792d09d9193"><span class="__cf_email__" data-cfemail="f0849f9dde849f9e97de8a81b0979d91999cde939f9d">[email&#160;protected]</span></a>
+      <span>Bangsar South, KL</span>
+    </div>
   </div>
 </header>
 
 <!-- TABS -->
 <nav class="tabs">
-  <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
-  <button class="tab-btn" onclick="switchTab('experience',this)">Experience</button>
-  <button class="tab-btn" onclick="switchTab('orgchart',this)">Org Chart</button>
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="switchTab('overview',this)">Overview</button>
+    <button class="tab-btn" onclick="switchTab('experience',this)">Experience</button>
+    <button class="tab-btn" onclick="switchTab('orgchart',this)">Org Chart</button>
+  </div>
 </nav>
 
 <!-- ═══════════════════ OVERVIEW ═══════════════════ -->
 <div id="tab-overview" class="tab-pane active">
 
   <div class="hero">
+    <div class="hero-inner">
     <div class="hero-eyebrow">Commercial Excellence &nbsp;·&nbsp; Revenue Operations</div>
     <div class="hero-name">TONG <span>ZHENG QIAN</span></div>
     <div class="hero-role"><strong>BD Lead</strong> — Vendor Acquisition &amp; Key Account Management &nbsp;·&nbsp; Lazada Malaysia</div>
@@ -260,14 +279,17 @@
       <span class="hero-tag">Revenue Operations</span>
     </div>
     <div class="hero-loc">📍 Bangsar South, Kuala Lumpur &nbsp;·&nbsp; Lazada, August 2021 – Present</div>
+    </div>
   </div>
 
   <!-- TEAM CONTEXT BANNER -->
   <div class="team-context">
+    <div class="tc-inner">
     <div class="tc-label">Team</div>
     <div class="tc-divider"></div>
     <div class="tc-text">
       Managing Lazada BD Marketplace team with <strong>23 HC</strong> (<strong>14 Hunters</strong> &amp; <strong>9 KAMs</strong>) — acquiring targeted sellers onto the platform and growing key accounts through GMV, ads spend &amp; campaign participation.
+    </div>
     </div>
   </div>
 
@@ -360,7 +382,7 @@
       <div class="sec-label">Contact</div>
       <div style="display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:#475569;font-weight:500;">
         <div>📞 <a href="tel:0193502618" style="color:#475569;text-decoration:none;">019-350 2618</a></div>
-        <div>✉️ <a href="mailto:tom.tong.zq@gmail.com" style="color:#475569;text-decoration:none;">tom.tong.zq@gmail.com</a></div>
+        <div>✉️ <a href="/cdn-cgi/l/email-protection#f2869d9fdc869d9c95dc8883b2959f939b9edc919d9f" style="color:#475569;text-decoration:none;"><span class="__cf_email__" data-cfemail="9febf0f2b1ebf0f1f8b1e5eedff8f2fef6f3b1fcf0f2">[email&#160;protected]</span></a></div>
         <div>📍 Bangsar South, KL</div>
       </div>
     </div>
@@ -679,19 +701,4 @@
       <div class="org-legend">
         <div class="leg"><div class="leg-dot" style="background:var(--navy);"></div>BD Lead</div>
         <div class="leg"><div class="leg-dot" style="background:var(--blue);"></div>Acquisition — 14 HC</div>
-        <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Incubation — 9 HC · KAMs + Project Leads</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  function switchTab(name,btn){
-    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.getElementById('tab-'+name).classList.add('active');
-    btn.classList.add('active');
-  }
-</script>
-</body>
-</html>
+        <div class="leg"><div class="leg-dot" style="background:var(--green);"></div>Incubation �
